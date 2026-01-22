@@ -37,21 +37,15 @@ const map = new maplibregl.Map({
         attribution: '© OpenStreetMap contributors'
       },
 
-      // LULC vector tiles
       lulc: {
-        type: 'vector',
-        tiles: [
-          'tiles: [
-  'tiles: [
-  'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
-]
-'
-],
-'
-        ],
-        minzoom: 5,
-        maxzoom: 12
-      }
+  type: 'vector',
+  tiles: [
+    'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
+  ],
+  minzoom: 5,
+  maxzoom: 12
+}
+
     },
 
     layers: [
