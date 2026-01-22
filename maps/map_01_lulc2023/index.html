@@ -1,10 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Basic WebGIS Map</title>
+  <meta charset="utf-8">
+  <title>Río Virilla Land Use & Land Cover (2023)</title>
+
+  <!-- MapLibre -->
+  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet">
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+
+  <style>
+    body { margin: 0; }
+    #map { width: 100%; height: 100vh; }
+  </style>
 </head>
+
 <body>
-  <h2>Basic Folium Map</h2>
-  <iframe src="map.html" width="100%" height="600"></iframe>
+<div id="map"></div>
+
+<script>
+const map = new maplibregl.Map({
+  container: 'map',
+
+  style: {
+    version: 8,
+
+    sources: {
+      // OpenStreetMap basemap (free, no token)
+      osm: {
+        type: 'raster',
+        tiles: [
+          'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          'https://c.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        ],
+        tileSize: 256,
+        attribution: '© OpenStreetMap contributors'
+      },
+
+      // LULC vector tiles
+      lulc: {
+        type: 'vector',
+        tiles: [
+          'tiles: [
+  'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
+],
+'
+        ],
+        minzoom: 5,
+        maxzoom: 12
+      }
+    },
+
+    layers: [
+      // Basemap
+      {
+        id: 'osm-basemap',
+        type: 'raster',
+        source: 'osm'
+      },
+
+      // LULC polygons
+      {
+        id: 'lulc-fill',
+        type: 'fill',
+        source: 'lulc',
+        'source-layer': 'RioVirilla_LU2023',
+        paint: {
+          'fill-color': [
+            'match',
+            ['get', 'class'],
+            'Forest', '#1b5e20',
+            'Urban', '#b71c1c',
+            'Agriculture', '#f9a825',
+            'Water', '#0277bd',
+            '#bdbdbd'
+          ],
+          'fill-opacity': 0.65
+        }
+      }
+    ]
+  },
+
+  center: [-84.1, 9.95],
+  zoom: 9
+});
+
+// Controls
+map.addControl(new maplibregl.NavigationControl());
+map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }));
+</script>
+
 </body>
 </html>
