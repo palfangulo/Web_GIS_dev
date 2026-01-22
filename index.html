@@ -5,7 +5,10 @@
   <title>Río Virilla Land Use & Land Cover (2023)</title>
 
   <!-- MapLibre -->
-  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet">
+  <link
+    href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"
+    rel="stylesheet"
+  />
   <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
 
   <style>
@@ -25,7 +28,6 @@ const map = new maplibregl.Map({
     version: 8,
 
     sources: {
-      // OpenStreetMap basemap (free, no token)
       osm: {
         type: 'raster',
         tiles: [
@@ -38,25 +40,22 @@ const map = new maplibregl.Map({
       },
 
       lulc: {
-  type: 'vector',
-  tiles: [
-    'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
-  ],
-  minzoom: 5,
-  maxzoom: 12
-}
-
+        type: 'vector',
+        tiles: [
+          'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
+        ],
+        minzoom: 5,
+        maxzoom: 12
+      }
     },
 
     layers: [
-      // Basemap
       {
         id: 'osm-basemap',
         type: 'raster',
         source: 'osm'
       },
 
-      // LULC polygons
       {
         id: 'lulc-fill',
         type: 'fill',
@@ -73,6 +72,17 @@ const map = new maplibregl.Map({
             '#bdbdbd'
           ],
           'fill-opacity': 0.65
+        }
+      },
+
+      {
+        id: 'lulc-outline',
+        type: 'line',
+        source: 'lulc',
+        'source-layer': 'RioVirilla_LU2023',
+        paint: {
+          'line-color': '#333333',
+          'line-width': 0.3
         }
       }
     ]
