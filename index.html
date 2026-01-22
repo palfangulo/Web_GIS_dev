@@ -41,6 +41,7 @@ const map = new maplibregl.Map({
 
       lulc: {
         type: 'vector',
+        scheme: 'xyz',
         tiles: [
           'https://palfangulo.github.io/Web_GIS_dev/maps/map_01_lulc2023/data/tiles_lulc/{z}/{x}/{y}.pbf'
         ],
@@ -69,6 +70,9 @@ const map = new maplibregl.Map({
             'Bosques', '#1b5e20',
             'Pastos', '#81c784',
             'Café', '#6d4c41',
+            'Caña', '#d4e157',
+            'Plantación forestal', '#388e3c',
+            'Ornamentales', '#f06292',
             'Otros cultivos', '#f9a825',
             'Urbano', '#b71c1c',
             'Agua', '#0277bd',
