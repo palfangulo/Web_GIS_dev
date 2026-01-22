@@ -64,14 +64,19 @@ const map = new maplibregl.Map({
         paint: {
           'fill-color': [
             'match',
-            ['get', 'class'],
-            'Forest', '#1b5e20',
-            'Urban', '#b71c1c',
-            'Agriculture', '#f9a825',
-            'Water', '#0277bd',
-            '#bdbdbd'
+            ['get', 'Clases'],
+
+            'Bosques', '#1b5e20',
+            'Pastos', '#81c784',
+            'Café', '#6d4c41',
+            'Otros cultivos', '#f9a825',
+            'Urbano', '#b71c1c',
+            'Agua', '#0277bd',
+            'Suelo sin vegetación', '#bdbdbd',
+
+            '#cccccc'
           ],
-          'fill-opacity': 0.65
+          'fill-opacity': 0.7
         }
       },
 
